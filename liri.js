@@ -1,12 +1,12 @@
-// Take in the command line argument indexOf[2]
-var command = process.argv[2];
-
 // Require packages and keys file, bring into the scope of liri.js
 var dotenv = require('dotenv').config();
 var request = require('request-promise');
 var Twitter = require('twitter');
 var fs = require('fs');
 var keys = require('./keys');
+
+// Take in the command line argument indexOf[2]
+var command = process.argv[2];
 
 // Pass Twitter keys with the Twitter API call
 var client = new Twitter(keys.twitter);
