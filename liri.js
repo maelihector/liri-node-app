@@ -30,50 +30,47 @@ var titleArgs = process.argv;
 
 // Create an empty variable for holding the movie name
 var movieName = "";
-// if (movieArg !== undefined){
-//   movieName = movieArg;
-// }
 
 // Loop through all the words in the node argument starting from indexOf[3]
 for (var i = 3; i < titleArgs.length; i++) {
   if (i > 3 && i < titleArgs.length) {
     movieName = movieName + "+" + titleArgs[i];
-  } 
-   else {
+  } else {
     movieName += titleArgs[i];
   }
   console.log(movieName);
 }
+if (!movieName){
+movieName = "Mr+Nobody";
+}
 
-// Run a request to the OMDB API with the movie specified
-var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
-
-// console.log(queryUrl);
-
-request(queryUrl, function (error, response, data) {
-
-  // If the request is successful
-  if (!error && response.statusCode === 200) {
-
-
-
-    // Only respond if the command is 'movie-this', otherwise console log 'error'
-    if (command === "movie-this") {
-      let movie = JSON.parse(data);
-
-      // Grab Rotten Tomatoes Rating
-      let tomatoesRating = movie.Ratings[1].Value;
-      // console.log(tomatoesRating);
-
-      // Console log  OMBD result
-      console.log(`
-        ${movie.Title} was released in ${movie.Year}, was produced in ${movie.Country}, and was made in the ${movie.Language} language(s).
-        Its IMDB rating is ${movie.imdbRating}/10, while its Rotten Tomatoes rating is ${tomatoesRating}.
-        The main actors in ${movie.Title} are ${movie.Actors}.
-        The plot of ${movie.Title} is: ${movie.Plot}
-        `);
-    } else {
-      console.log("Something went wrong!");
-    }
-  } else console.log(error);
-});
+   // Run a request to the OMDB API with the movie specified
+   var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
+   
+   //console.log(queryUrl);
+   
+   request(queryUrl, function (error, response, data) {
+     
+     // If the request is successful
+     if (!error && response.statusCode === 200) {
+       
+       // Only respond if the command is 'movie-this', otherwise console log 'error'
+       if (command === "movie-this" && movieName) {
+         let movie = JSON.parse(data);
+         //let movieName = "Mr+Nobody"}
+         
+         // Grab Rotten Tomatoes Rating
+         let tomatoesRating = movie.Ratings[1].Value;
+         // console.log(tomatoesRating);
+         
+         // Console log  OMBD result
+         console.log(`
+         ${movie.Title} was released in ${movie.Year}, was produced in ${movie.Country}, and was made in the ${movie.Language} language(s).
+         Its IMDB rating is ${movie.imdbRating}/10, while its Rotten Tomatoes rating is ${tomatoesRating}.
+         The main actors in ${movie.Title} are ${movie.Actors}.
+         The plot of ${movie.Title} is: ${movie.Plot}
+         `);
+        }
+      } else console.log(error);
+    });
+  
