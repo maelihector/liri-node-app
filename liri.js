@@ -8,6 +8,7 @@ var keys = require('./keys');
 // Take in the command line argument indexOf[2]
 var command = process.argv[2];
 
+
 // // Pass Twitter keys with the Twitter API call
 // var client = new Twitter(keys.twitter);
 // // Get statuses from 'knlsworthington' user_timeline, with 'count=20' included in the call
@@ -29,15 +30,19 @@ var titleArgs = process.argv;
 
 // Create an empty variable for holding the movie name
 var movieName = "";
+// if (movieArg !== undefined){
+//   movieName = movieArg;
+// }
 
-// Loop through all the words in the node argument
-// And do a little for-loop magic to handle the inclusion of "+"s
+// Loop through all the words in the node argument starting from indexOf[3]
 for (var i = 3; i < titleArgs.length; i++) {
   if (i > 3 && i < titleArgs.length) {
     movieName = movieName + "+" + titleArgs[i];
-  } else {
+  } 
+   else {
     movieName += titleArgs[i];
   }
+  console.log(movieName);
 }
 
 // Run a request to the OMDB API with the movie specified
@@ -49,18 +54,26 @@ request(queryUrl, function (error, response, data) {
 
   // If the request is successful
   if (!error && response.statusCode === 200) {
+
+
+
     // Only respond if the command is 'movie-this', otherwise console log 'error'
     if (command === "movie-this") {
       let movie = JSON.parse(data);
-      // Console log result
+
+      // Grab Rotten Tomatoes Rating
+      let tomatoesRating = movie.Ratings[1].Value;
+      // console.log(tomatoesRating);
+
+      // Console log  OMBD result
       console.log(`
-      ${movie.Title} was released in ${movie.Year}, was produced in ${movie.Country}, and made in the ${movie.Language} language(s).
-      Its IMDB rating is ${movie.imdbRating}, while its Rotten Tomatoes Rating is ${movie.Ratings[2][3]}.
-      The main actors in ${movie.Title} are ${movie.Actors}.
-      The plot of ${movie.Title} is: ${movie.Plot}
-      `);
+        ${movie.Title} was released in ${movie.Year}, was produced in ${movie.Country}, and was made in the ${movie.Language} language(s).
+        Its IMDB rating is ${movie.imdbRating}/10, while its Rotten Tomatoes rating is ${tomatoesRating}.
+        The main actors in ${movie.Title} are ${movie.Actors}.
+        The plot of ${movie.Title} is: ${movie.Plot}
+        `);
     } else {
-      console.log(error);
+      console.log("Something went wrong!");
     }
-  }
+  } else console.log(error);
 });
