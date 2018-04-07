@@ -15,7 +15,7 @@ Using Node.js LIRI takes in an action request and an optional argument through `
  2. Retrieve arbitrary movie information for the movie referenced by the user  by calling the OMBD API
  3. Or call out to a text file that holds either of the two actions mentioned above, plus a random movie as an argument if the action is to retrieve movie information
 
-Aside from that LIRI appends all output to a log.txt for easier viewing of data.
+Aside from that LIRI appends all output to log.txt for easier viewing of data.
 
 ##  How does it work?
 
