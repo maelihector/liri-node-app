@@ -85,11 +85,11 @@ function getRandom() {
       // Grab length of the random item
       let index = random.length;
       // Slice the random item at 'my-tweet' indexes 
-      let myTweets = random.slice(1, 10);
+      let myTweets = random.slice(0, 9);
       // and check if random item is != 'my-tweet'
       if (myTweets != "my-tweets") {
         // Grab the whole argument starting at indexOf[12] and store it in randomMovie
-        let randomMovie = random.slice(12, index);
+        let randomMovie = random.slice(11, index);
         // Loop through the title words starting from index 3 and add a '+' inbetween words if title consists of more than two words
         for (var i = 3; i < argument.length; i++) {
           if (i > 3 && i < argument.length) {
