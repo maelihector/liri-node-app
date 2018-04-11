@@ -83,10 +83,7 @@ function getRandom() {
       let randomMovie = random.slice(11, index);
       // and check if random item is != 'my-tweet'
       if (myTweets != "my-tweets") {
-        // Grab the whole argument starting at indexOf[12] and store it in randomMovie
-        
-        // Loop through the title words starting from index 3 and add a '+' inbetween words if title consists of more than two words
-  
+
         // Run the call/request to the OMDB API along with randomMovie
         request("http://www.omdbapi.com/?t=" + randomMovie + "&y=&plot=short&apikey=trilogy")
           .then(data => {
