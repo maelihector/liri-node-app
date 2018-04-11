@@ -15,20 +15,14 @@ function append(output) {
   fs.appendFile("log.txt", `${output}
 `, (error) => { /*console.log(error);*/ })
 }
+var movieName = "";
 
 // Create an empty variable for holding the movie name
-var movieName = "";
 
 // Function for action === 'movie-this' 
 function getMovie() {
   // Loop through the title words starting from index 3 and add a '+' inbetween words if title consists of more than two words
-  for (var i = 3; i < argument.length; i++) {
-    if (i > 3 && i < argument.length) {
-      movieName = movieName + "+" + argument[i];
-    } else {
-      movieName += argument[i];
-    }
-  }
+  let movieName = process.argv.slice(3).join("+");
   // If there is no argument after 'movie-this', default to "Mr+Nobody".
   if (!movieName) {
     movieName = "Mr+Nobody";
@@ -86,18 +80,13 @@ function getRandom() {
       let index = random.length;
       // Slice the random item at 'my-tweet' indexes 
       let myTweets = random.slice(0, 9);
+      let randomMovie = random.slice(11, index);
       // and check if random item is != 'my-tweet'
       if (myTweets != "my-tweets") {
         // Grab the whole argument starting at indexOf[12] and store it in randomMovie
-        let randomMovie = random.slice(11, index);
+        
         // Loop through the title words starting from index 3 and add a '+' inbetween words if title consists of more than two words
-        for (var i = 3; i < argument.length; i++) {
-          if (i > 3 && i < argument.length) {
-            randomMovie = randomMovie + "+" + argument[i];
-          } else {
-            randomMovie += argument[i];
-          }
-        }
+  
         // Run the call/request to the OMDB API along with randomMovie
         request("http://www.omdbapi.com/?t=" + randomMovie + "&y=&plot=short&apikey=trilogy")
           .then(data => {
