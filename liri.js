@@ -50,7 +50,7 @@ function getMovie() {
       // Console log and call append() 
       console.log(log);
       append(log);
-    })
+    }).catch(err => console.log(err))
 }
 
 // Function for action === 'my-tweets'
@@ -106,7 +106,7 @@ function getRandom() {
             let tomatoesRating = movie.Ratings[1].Value;
             // Grab output and store in log to avoid extra code.
             let log = `
-          I hoped you like the movie ${movie.Title}!
+          I hope you liked the movie ${movie.Title}!
           
           ${movie.Title} was released in ${movie.Year}, was produced in ${movie.Country}, and was made in the ${movie.Language} language(s).
           Its IMDB rating is ${movie.imdbRating}/10, while its Rotten Tomatoes rating is ${tomatoesRating}.
@@ -125,7 +125,7 @@ function getRandom() {
         `);
         getTweets()
       }
-    })
+    }).catch(err => console.log(err))
 }
 
 switch (action) {
