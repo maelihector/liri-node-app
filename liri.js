@@ -13,16 +13,21 @@ var argument = process.argv;
 // Append output to log.txt
 function append(output) {
   fs.appendFile("log.txt", `${output}
-`, (error) => { /*console.log(error);*/ })
+`, (error) => {
+    /*console.log(error);*/ })
 }
 var movieName = "";
 
 // Create an empty variable for holding the movie name
 
 // Function for action === 'movie-this' 
-function getMovie() {
+function getMovie(randomMovie) {
   // Loop through the title words starting from index 3 and add a '+' inbetween words if title consists of more than two words
-  let movieName = process.argv.slice(3).join("+");
+  movieName = process.argv.slice(3).join("+");
+  // If getMovie() was called by getRandom(movieName), then set the random movie to movieName
+  if (randomMovie) {
+    movieName = randomMovie;
+  }
   // If there is no argument after 'movie-this', default to "Mr+Nobody".
   if (!movieName) {
     movieName = "Mr+Nobody";
@@ -76,6 +81,7 @@ function getRandom() {
       let item = data.split(",")
       // Grab a random item 
       let random = item[Math.floor(Math.random() * item.length)];
+      console.log(random);
       // Grab length of the random item
       let index = random.length;
       // Slice the random item at 'my-tweet' indexes 
@@ -83,26 +89,11 @@ function getRandom() {
       let randomMovie = random.slice(11, index);
       // and check if random item is != 'my-tweet'
       if (myTweets != "my-tweets") {
-
-        // Run the call/request to the OMDB API along with randomMovie
-        request("http://www.omdbapi.com/?t=" + randomMovie + "&y=&plot=short&apikey=trilogy")
-          .then(data => {
-            let movie = JSON.parse(data);
-            // Grab Rotten Tomatoes Rating in 'tomatoesRating'
-            let tomatoesRating = movie.Ratings[1].Value;
-            // Grab output and store in log to avoid extra code.
-            let log = `
-          I hope you liked the movie ${movie.Title}!
-          
-          ${movie.Title} was released in ${movie.Year}, was produced in ${movie.Country}, and was made in the ${movie.Language} language(s).
-          Its IMDB rating is ${movie.imdbRating}/10, while its Rotten Tomatoes rating is ${tomatoesRating}.
-          The main actors in ${movie.Title} are ${movie.Actors}.
-          The plot of ${movie.Title} is: ${movie.Plot}
-          `
-            // Console log and call append() 
-            console.log(log);
-            append(log);
-          })
+        console.log(`
+        
+        You get a movie! Hope you like ${randomMovie}!
+        `);
+        getMovie(randomMovie);
       } else {
         // If random item is === 'my-tweet'call getTweets()
         console.log(`
@@ -124,4 +115,6 @@ switch (action) {
   case "do-what-it-says":
     getRandom();
     break;
+  default:
+    console.log("Give me an action at process.argv[2]!");
 }
