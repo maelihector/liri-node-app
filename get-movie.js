@@ -25,7 +25,7 @@ var getMovie = function (randomMovie) {
     movieName = "Mr+Nobody";
   }
   // Run the call/request to the OMDB API with movieName parameter
-  request("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy")
+  request("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=ef466355")
     .then(data => {
       // Parse return data
       let movie = JSON.parse(data);
