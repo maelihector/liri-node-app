@@ -38,13 +38,14 @@ To retrieve data at random, in the terminal at the root enter:
 
 ## Technologies Used
 
-1. [Node.js](https://nodejs.org/en/)
+-[Node.js](https://nodejs.org/en/)
 
-[request-promise](https://www.npmjs.com/package/request-promise)
-[fs-extra](https://www.npmjs.com/package/fs-extra) 	  
+  -[request-promise](https://www.npmjs.com/package/request-promise),
+  -[fs-extra](https://www.npmjs.com/package/fs-extra) 	  
 
-2. [Twitter API](https://developer.twitter.com/) 
-3. [OMDb API](http://www.omdbapi.com/).
+-[Twitter API](https://developer.twitter.com/) 
+
+-[OMDb API](http://www.omdbapi.com/).
 
 
 ---
