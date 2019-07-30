@@ -1,51 +1,51 @@
-#  node-command-app
-
-  
+#  Language Interpretation and Recognition Interface (LIRI)
 
 ## What is this?
 
-node-command-app is a Language Interpretation and Recognition Interface.
+LIRI is a [node.js](https://nodejs.org/en/) command-line application that takes in an action request and an optional argument through `process.argv`, and returns either [Twitter](https://twitter.com/) data from [Twitter API](https://developer.twitter.com/) or movie data from [OMDb API](http://www.omdbapi.com/).
 
-Using Node.js node-command-app takes in an action request and an optional argument through `process.argv`.
+## What does LIRI do?
 
-## What does it do?
- 
+1. Retrieves the 20 most recent tweets referenced by the user from the Twitter API
 
- 1. node-command-app can retrieve the 20 most recent tweets from the Twitter API using the specified parameter of `screen_name` 
- 2. Retrieve arbitrary movie information for the movie referenced by the user  by calling the OMBD API
- 3. Or call out to a text file that holds either of the two actions mentioned above, plus a random movie as an argument if the action is to retrieve movie information
+2. Retrieves arbitrary movie data for the movie referenced by the user  by calling the OMBD API
 
-Aside from that node-command-app appends all output to log.txt for easier viewing of data.
+4. Does one of the above by calling out to a text file that holds either of the two actions mentioned above, plus a random movie as an argument if the action is to retrieve movie information
+
+Aside from that LIRI appends all output to `log.txt` for easier viewing of data.
 
 ##  How does it work?
 
 ###  Get Tweets
 
-To retrieves my cat's latest 20 tweets:
-`node liri.js my-tweets`
+To retrieves a public Twitter account's latest 20 tweets, in the terminal at the root enter:
 
- ###  Get Movie Info
+`node liri.js my-tweets <screen_name>`
 
-Retrieves movie information for a movie:
-`node liri.js movie-this Star Wars`
+### Get Movie Info
 
- **Don't worry about capitalization, just make sure you spell the title right.**
+To retrieve movie information for a specific movie, in the terminal at the root enter:
+
+`node liri.js movie-this <movie title>`
+
+**Don't worry about capitalization or spaces in movie titles, just make sure you spell the title right.**
 
 ###  Get Random Info
 
-Gets random text inside a file and does what it says:
+To retrieve data at random, in the terminal at the root enter:
+
 `node liri.js do-what-it-says`
 
+## Technologies Used
 
-----------
+1. [Node.js](https://nodejs.org/en/)
+
+[request-promise](https://www.npmjs.com/package/request-promise)
+[fs-extra](https://www.npmjs.com/package/fs-extra) 	  
+
+2. [Twitter API](https://developer.twitter.com/) 
+3. [OMDb API](http://www.omdbapi.com/).
 
 
-##  NPM Installs
-
-####  [Twitter](https://www.npmjs.com/package/twitter)
-
-####  [dotenv](https://www.npmjs.com/package/dotenv)
-
-####  [request-promise](https://www.npmjs.com/package/request-promise)
-
-####  [fs-extra](https://www.npmjs.com/package/fs-extra)
+---
+> Written with [StackEdit](https://stackedit.io/).
