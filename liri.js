@@ -1,65 +1,84 @@
-// Require packages and keys file, and bring into the scope of liri.js
-var dotenv = require('dotenv').config();
-var fs = require('fs-extra');
-var getMovie = require('./get-movie');
-var getTweets = require('./get-tweets');
+// Require packages into the scope of liri.js
+const fs = require('fs-extra');
+const getMovie = require('./get-movie');
+const getTweets = require('./get-tweets');
+const getSpotify = require('./get-spotify');
 
-// Take in the command line argument indexOf[2] and store it in 'action' var
-var action = process.argv[2];
-// Store all of the arguments in an array
-var argument = process.argv;
+// Take in the command line argument index[2]
+let action = process.argv[2];
 
-// Append output to log.txt
-function append(output) {
-  fs.appendFile("log.txt", `${output}
-`, (error) => {
-    /*console.log(error);*/
-  })
-}
+// Loop through the argument words starting from index[3] and add a '+' inbetween words if argument consists of more than two words
+let argument = process.argv.slice(3).join('+');
 
 // Funtion for action === 'do-what-it-says'
 function getRandom() {
   // Grab the actions and arguments string in random.txt
   fs.readFile('random.txt', "utf8")
     .then(data => {
-      // split the string at each "," and store each snippet in item
-      let item = data.split(",")
+      // Split the string at each "," and store each snippet in item
+      let item = data.split(",");
       // Grab a random item 
       let random = item[Math.floor(Math.random() * item.length)];
-      console.log(random);
       // Grab length of the random item
       let index = random.length;
-      // Slice the random item at 'my-tweet' indexes 
+      // Slice the random item to isolate action
       let myTweets = random.slice(0, 9);
-      let randomMovie = random.slice(11, index);
-      // and check if random item is != 'my-tweet'
-      if (myTweets != "my-tweets") {
+      let randomArtist = random.slice(0, 12);
+      let randomMovie = random.slice(0, 10);
+
+      // Check if random item is != 'my-tweet'
+      if (myTweets === "my-tweets") {
+        console.log(`
+        
+        You get my Tweets!
+        `);
+        getTweets();
+      }
+
+      if (randomMovie === "movie-this") {
+        // Fetch movie title and remove '+'
+        randomMovie = random.slice(11, index);
+        randomMovie = splitString(randomMovie);
         console.log(`
         
         You get a movie! Hope you like ${randomMovie}!
         `);
         getMovie(randomMovie);
-      } else {
-        // If random item is === 'my-tweet'call getTweets()
+      }
+
+      if (randomArtist === "spotify-this-artist") {
+        // Fetch artist string and remove '+'
+        randomArtist = random.slice(13, index);
+        randomArtist = splitString(randomArtist);
         console.log(`
         
-        You get my Tweets!
+        You get an artists' albums! Hope you like ${randomArtist}!
         `);
-        getTweets()
+        getSpotify(randomArtist);
       }
-    }).catch(err => console.log(err))
+
+    }).catch(err => console.log(err));
+}
+
+// Helper function to remove '+' from action string
+function splitString(string) {
+  string = string.split("+").join(" ");
+  return string;
 }
 
 switch (action) {
   case "my-tweets":
-    getTweets();
+    getTweets(argument);
     break;
   case "movie-this":
-    getMovie();
+    getMovie(argument);
     break;
   case "do-what-it-says":
     getRandom();
     break;
+  case "spotify-this-artist":
+    getSpotify(argument);
+    break;
   default:
-    console.log("Give me an action at process.argv[2]!");
+    console.log("Give me an action of 'my-tweets', 'movie-this', 'do-what-it-says', or 'spotify-this-artist' at process.argv[2]!");
 }
