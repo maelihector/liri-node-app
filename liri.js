@@ -22,17 +22,19 @@ function getRandom() {
       // Grab length of the random item
       let index = random.length;
       // Slice the random item to isolate action
-      let myTweets = random.slice(0, 9);
-      let randomArtist = random.slice(0, 12);
+      let myTweets = random.slice(0, 10);
+      let randomArtist = random.slice(0, 19);
       let randomMovie = random.slice(0, 10);
 
       // Check if random item is != 'my-tweet'
-      if (myTweets === "my-tweets") {
+      if (myTweets === "get-tweets") {
+        // Fetch twitter handle
+        myTweets = random.slice(10, index);
         console.log(`
         
-        You get my Tweets!
+        You get ${myTweets} tweets!
         `);
-        getTweets();
+        getTweets(myTweets);
       }
 
       if (randomMovie === "movie-this") {
@@ -48,7 +50,7 @@ function getRandom() {
 
       if (randomArtist === "spotify-this-artist") {
         // Fetch artist string and remove '+'
-        randomArtist = random.slice(13, index);
+        randomArtist = random.slice(20, index);
         randomArtist = splitString(randomArtist);
         console.log(`
         
@@ -67,7 +69,7 @@ function splitString(string) {
 }
 
 switch (action) {
-  case "my-tweets":
+  case "get-tweets":
     getTweets(argument);
     break;
   case "movie-this":
@@ -80,5 +82,5 @@ switch (action) {
     getSpotify(argument);
     break;
   default:
-    console.log("Give me an action of 'my-tweets', 'movie-this', 'do-what-it-says', or 'spotify-this-artist' at process.argv[2]!");
+    console.log("Give me an action of 'get-tweets', 'movie-this', 'spotify-this-artist', or 'do-what-it-says' at process.argv[2]!");
 }

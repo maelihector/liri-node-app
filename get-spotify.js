@@ -15,11 +15,8 @@ function append(output) {
 const spotifyId = process.env.SPOTIFY_ID;
 const spotifySecret = process.env.SPOTIFY_SECRET;
 
-// Create an empty variable for holding the artists' name
-let artistName = "";
-
 // Function for action === 'get-spotify`
-let getSpotify = function (randomArtist) {
+let getSpotify = function (artist) {
 
   // Create POST call url for getting a Spotify authorization token
   let authOptions = {
@@ -38,18 +35,15 @@ let getSpotify = function (randomArtist) {
     if (!error && response.statusCode === 200) {
       // Fetch access token
       let token = body.access_token;
-      // If getSpotify() is called with `randomArtist` arg, it means that user chose 'get-random'
-      if (randomArtist) {
-        artistName = randomArtist;
-      }
-      // User did not enter artist after choosing 'get-spotify'
-      if (!artistName) {
-        artistName = "Michael+Jackson";
+
+      // if user did not enter artist after choosing 'spotify-this-artist', default to Michael Jackson
+      if (!artist) {
+        artist = "Michael+Jackson";
       }
 
       // Create GET call url for getting artist
       let options = {
-        url: 'https://api.spotify.com/v1/search?q=' + artistName + '&type=artist&limit=1',
+        url: 'https://api.spotify.com/v1/search?q=' + artist + '&type=artist&limit=1',
         headers: {
           'Authorization': 'Bearer ' + token
         },

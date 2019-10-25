@@ -10,21 +10,15 @@ function append(output) {
   });
 }
 
-// Create an empty variable for holding the movie name
-var movieName = "";
-
 // Function for getting movie from IMDB
-var getMovie = function (randomMovie) {
-  // If getMovie() was called by getRandom(movieName), then set the random movie to movieName
-  if (randomMovie) {
-    movieName = randomMovie;
+var getMovie = function (movie) {
+
+  // If user did not enter movie after choosing 'movie-this', default to Mr. Nobody
+  if (!movie) {
+    movie = "Mr+Nobody";
   }
-  // If there is no argument after 'movie-this', default to "Mr+Nobody"
-  if (!movieName) {
-    movieName = "Mr+Nobody";
-  }
-  // Run the call/request to the OMDB API with movieName parameter
-  request("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=ef466355")
+  // Run the call/request to the OMDB API with movie parameter
+  request("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=ef466355")
     .then(data => {
       // Parse return data
       let movie = JSON.parse(data);
