@@ -5,12 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "dotenv": "^5.0.1",
-    "fs": "0.0.1-security",
     "fs-extra": "^5.0.0",
-    "lodash": "^4.17.14",
-    "node-spotify-api": "^1.1.1",
-    "npm": "^6.10.1",
+    "lodash": "^4.17.15",
     "request": "^2.88.0",
+    "request-promise": "^4.2.4",
     "twitter": "^1.7.1"
   },
   "devDependencies": {},
@@ -21,8 +19,16 @@
     "type": "git",
     "url": "git+https://github.com/maelihector/liri-node-app.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "nodejs",
+    "CLI",
+    "command-line-interface",
+    "language-interpretation-recognition-interface",
+    "OMBD API",
+    "Twitter API",
+    "Spotify API"
+  ],
+  "author": "Maeli Hector",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/maelihector/liri-node-app/issues"
