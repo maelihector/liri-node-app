@@ -1,52 +1,118 @@
-#  Language Interpretation and Recognition Interface (LIRI)
+
+# Language Interpretation and Recognition Interface (LIRI)
+
 
 ## What is this?
 
-LIRI is a [node.js](https://nodejs.org/en/) command-line application that takes in an action request and an optional argument through `process.argv`, and returns either [Twitter](https://twitter.com/) data from [Twitter API](https://developer.twitter.com/) or movie data from [OMDb API](http://www.omdbapi.com/).
+
+LIRI is a [nodejs](https://nodejs.org/en/) application program that uses a command-line interface (CLI) to interact with its users. 
+
+LIRI recognizes commands to get tweets, get movie data, get music data, and a command that asks LIRI itself to randomly pick a command to execute. The commands return useful data from either the [Twitter API](https://developer.twitter.com/), the [OMDb API](http://www.omdbapi.com/), or the [Spotify API](https://developer.spotify.com/documentation/web-api/).
+
+
 
 ## What does LIRI do?
 
-1. Retrieves the 20 most recent tweets referenced by the user from the Twitter API
+Based on the commands:
 
-2. Retrieves arbitrary movie data for the movie referenced by the user  by calling the OMBD API
 
-4. Does one of the above by calling out to a text file that holds either of the two actions mentioned above, plus a random movie as an argument if the action is to retrieve movie information
+1. LIRI returns the 20 most recent [tweets](https://twitter.com/home?lang=en) by a public twitter account that the user specifies by calling the [Twitter API](https://developer.twitter.com/) to get this data. If a twitter handle is not supplied to LIRI, if the twitter handle does not exist, or if it belongs to a private account, LIRI returns [@knlsworthington](https://twitter.com/knlsworthington)'s tweets.
 
-Aside from that LIRI appends all output to `log.txt` for easier viewing of data.
 
-##  How does it work?
+2. Calling the [Spotify API](https://developer.spotify.com/documentation/web-api/), LIRI returns the top albums of the artist that the user specifies. If an artist is not supplied to LIRI, or if the artist does not exists on the [Spotify API](https://developer.spotify.com/documentation/web-api/), LIRI returns [Michael Jackson](https://www.michaeljackson.com/)'s top albums.
 
-###  Get Tweets
 
-To retrieves a public Twitter account's latest 20 tweets, in the terminal at the root enter:
+3. LIRI gets detailed movie data from the movie title specified by the user by calling the [OMDb API](http://www.omdbapi.com/) to get this data. If a movie title is not supplied to LIRI, or if the movie does not exists on the [OMDb API](http://www.omdbapi.com/), LIRI returns movie data for the movie [Mr. Nobody](https://www.imdb.com/title/tt0485947/).
 
-`node liri.js my-tweets <screen_name>`
+
+4. The user has the option to let LIRI pick what to get. With this particular command LIRI reads the `random.txt` file which holds a string of several commands, splits the commands into an array, and then randomly picks one to execute.
+
+
+
+## How does it work?
+
+#### First make sure that you have [nodejs](https://nodejs.org/en/) installed on your local machine, *and* that you have both a [Spotify for Developers](https://developer.spotify.com/dashboard/) and a  [Twitter Developers](https://developer.twitter.com/en/docs/basics/getting-started) account. 
+
+ 1. Clone this LIRI project onto your local machine.
+ 2. Install all of LIRI's node package dependencies. Inside your terminal, `cd` to the root of your LIRI directory and run `npm install`.
+ 3. Get your API Credentials. 
+	- Sign in to your [Spotify for Developers](https://developer.spotify.com/dashboard/) account and follow the instructions to get both a **Client ID** and a **Secret Key**. 
+	- Sign in to your [Twitter Developers](https://developer.twitter.com/en/docs/basics/getting-started) account to get both a  **Consumer API Key**, and an **API Secret Key**
+		- After getting both your **Consumer API Key** and your **API Secret Key**, go [here](https://developer.twitter.com/en/docs/basics/authentication/guides/bearer-tokens) for instructions on how to get a Twitter **Bearer Token** and get yours.
+
+4. Add your API credentials to LIRI. Still at the root of your LIRI directory, inside the terminal run `touch .env`. Place all five credentials inside the `.env` file, and sure the file looks like the following with **your own** credentials as the values: 
+
+```
+# Spotify API keys
+
+SPOTIFY_ID=yourAlphaNumericSpotifyIdGoesHere
+SPOTIFY_SECRET=yourAlphaNumericSpotifySecretGoesHere
+
+# Twitter API keys
+
+TWITTER_CONSUMER_KEY=yourAlphaNumericTwitterConsumerKeyGoesHere
+TWITTER_CONSUMER_SECRET=yourAlphaNumericTwitterConsumerSecretKeyGoesHere
+TWITTER_BEARER_TOKEN=yourAlphaNumericTwitterBearerTokenGoesHere
+```
+
+5. There is no step 5! LIRI is READY!
+
+
+### To Get Tweets
+
+In the terminal at the root of the LIRI directory enter:
+
+`node liri get-tweets <twitter handle without the @>`
+
+Ex: `node liri get-tweets NASA`
+
 
 ### Get Movie Info
 
-To retrieve movie information for a specific movie, in the terminal at the root enter:
+In the terminal at the root of the LIRI directory enter:
 
-`node liri.js movie-this <movie title>`
+`node liri get-movie <movie title>`
 
-**Don't worry about capitalization or spaces in movie titles, just make sure you spell the title right.**
+Ex : `node liri get-movie The Shawshank Redemption`
 
-###  Get Random Info
 
-To retrieve data at random, in the terminal at the root enter:
+### Get a Music Artist's Info
 
-`node liri.js do-what-it-says`
+
+In the terminal at the root of the LIRI directory enter:
+
+`node liri get-top-albums <artist name>`
+
+Ex: `node liri get-top-albums Michael Jackson`
+
+
+
+### Get Random
+
+
+In the terminal at the root of the LIRI directory enter:
+
+`node liri liri-picks`
+
 
 ## Technologies Used
 
+- JavaScript
+
 - [Node.js](https://nodejs.org/en/)
+	- [request-promise](https://www.npmjs.com/package/request-promise)
 
-  - [request-promise](https://www.npmjs.com/package/request-promise),
-  - [fs-extra](https://www.npmjs.com/package/fs-extra) 	  
+	- [fs-extra](https://www.npmjs.com/package/fs-extra)
+	- [dotenv](https://www.npmjs.com/search?q=dotenv)
+	- [lodash](https://www.npmjs.com/package/lodash)
+	- [twitter](https://www.npmjs.com/package/twitter)
 
-- [Twitter API](https://developer.twitter.com/) 
 
-- [OMDb API](http://www.omdbapi.com/).
+- [Twitter API](https://developer.twitter.com/)
+- [Spotify API](https://developer.spotify.com/)
+- [OMDb API](http://www.omdbapi.com/)
 
 
 ---
-> Written with [StackEdit](https://stackedit.io/).
+
+> Written with [StackEdit](https://stackedit.io/)
