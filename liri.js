@@ -10,7 +10,7 @@ let action = process.argv[2];
 // Loop through the argument words starting from index[3] and add a '+' inbetween words if argument consists of more than two words
 let argument = process.argv.slice(3).join('+');
 
-// Funtion for action === 'do-what-it-says'
+// Funtion for action === 'liri-picks'
 function getRandom() {
   // Grab the actions and arguments string in random.txt
   fs.readFile('random.txt', "utf8")
@@ -23,38 +23,38 @@ function getRandom() {
       let index = random.length;
       // Slice the random item to isolate action
       let myTweets = random.slice(0, 10);
-      let randomArtist = random.slice(0, 19);
-      let randomMovie = random.slice(0, 10);
+      let randomArtist = random.slice(0, 14);
+      let randomMovie = random.slice(0, 9);
 
       // Check if random item is != 'my-tweet'
       if (myTweets === "get-tweets") {
         // Fetch twitter handle
-        myTweets = random.slice(10, index);
+        myTweets = random.slice(11, index);
         console.log(`
         
-        You get ${myTweets} tweets!
+        You get @${myTweets}'s' tweets!
         `);
         getTweets(myTweets);
       }
 
-      if (randomMovie === "movie-this") {
+      if (randomMovie === "get-movie") {
         // Fetch movie title and remove '+'
-        randomMovie = random.slice(11, index);
+        randomMovie = random.slice(10, index);
         randomMovie = splitString(randomMovie);
         console.log(`
         
-        You get a movie! Hope you like ${randomMovie}!
+        You get a movie! Hope you like the movie ${randomMovie}!
         `);
         getMovie(randomMovie);
       }
 
-      if (randomArtist === "spotify-this-artist") {
+      if (randomArtist === "get-top-albums") {
         // Fetch artist string and remove '+'
-        randomArtist = random.slice(20, index);
+        randomArtist = random.slice(15, index);
         randomArtist = splitString(randomArtist);
         console.log(`
         
-        You get an artists' albums! Hope you like ${randomArtist}!
+        You get an artists' top albums! Hope you like ${randomArtist}!
         `);
         getSpotify(randomArtist);
       }
@@ -72,15 +72,15 @@ switch (action) {
   case "get-tweets":
     getTweets(argument);
     break;
-  case "movie-this":
+  case "get-movie":
     getMovie(argument);
     break;
-  case "do-what-it-says":
+  case "liri-picks":
     getRandom();
     break;
-  case "spotify-this-artist":
+  case "get-top-albums":
     getSpotify(argument);
     break;
   default:
-    console.log("Give me an action of 'get-tweets', 'movie-this', 'spotify-this-artist', or 'do-what-it-says' at process.argv[2]!");
+    console.log("Give me an action of 'get-tweets', 'get-movie', 'get-top-albums', or 'liri-picks' at process.argv[2]!");
 }
