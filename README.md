@@ -32,6 +32,8 @@ Based on the commands the user enters into the terminal:
 
 4. Get your API Credentials:
 
+  - Go [here](http://www.omdbapi.com/apikey.aspx) and follow the instructions to get a free **[OMBD API](http://www.omdbapi.com/) Key**.
+
 	- Sign in, or sign up to get your [Spotify for Developers](https://developer.spotify.com/dashboard/) account, and then follow their instructions to get both a **Client ID** and a **Secret Key**.
 
 	- Sign in, or sign up get get your [Twitter Developers](https://developer.twitter.com/en/docs/basics/getting-started) account, and then get both a **Consumer API Key**, and a **API Secret Key**
@@ -40,7 +42,7 @@ Based on the commands the user enters into the terminal:
 
 5. Add your API credentials to LIRI.
 
-	At the root of your LIRI directory, inside the terminal run `touch .env`. Place all **five** API credentials inside the `.env` file, and sure the file looks like the following with **your own** credentials as the values:
+	At the root of your LIRI directory, inside the terminal run `touch .env`. Place all **six** API credentials inside the `.env` file, and make sure the file looks like the following with **your own** credentials as the values:
 
 ```
 
@@ -55,11 +57,14 @@ TWITTER_CONSUMER_KEY=yourAlphaNumericTwitterConsumerKeyGoesHere
 TWITTER_CONSUMER_SECRET=yourAlphaNumericTwitterConsumerSecretKeyGoesHere
 TWITTER_BEARER_TOKEN=yourAlphaNumericTwitterBearerTokenGoesHere
 
+# OMDB API key
+
+OMDB_API_KEY=yourAlphaNumericOMDBapiKeyGoesHere
 ```
 
-5. LIRI is ready to go!
+6. LIRI is ready to go!
 
-Run each of the following seperate commands in your terminal at the root of the LIRI repository.
+### Run each of the following seperate commands in your terminal at the root of the LIRI repository.
 
 #### To Get Tweets
 
@@ -95,14 +100,7 @@ To let LIRI pick what you get, just run:
 
 ## Demo Videos
 
-*  [node liri get-tweets](linkToDemo.com)
-
-*  [node liri get-movie](linkToDemo.com)
-
-*  [node liri get-top-albums](linkToDemo.com)
-
-*  [node liri liri-picks](linkToDemo.com)
-
+*  [DEMO](https://drive.google.com/file/d/1zWftgHgjmx_LCZdlUdDzegg7_C4qmNx1/view)
 
 ## Technologies Used
 
