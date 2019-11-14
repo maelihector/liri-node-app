@@ -1,6 +1,6 @@
 require('dotenv').config();
 const request = require('request-promise');
-var fs = require('fs-extra');
+const fs = require('fs-extra');
 
 
 // Append output to log.txt

@@ -29,7 +29,7 @@ const getTweets = function (publicTwitterScreenName) {
   // Call Twitter API and 'GET' status of user_timeline = 'knlsworthington' up to 'count=20'
   // Paramaters are included in the call rather than saved in a variable
   client.get('statuses/user_timeline.json?screen_name=' + publicTwitterScreenName + '&count=20', function (error, data) {
-    if (error) {
+    if (error || data.length === 0) {
       console.log(`
       Oops, something went wrong, here's @knlsworthington's tweets instead!
       `);

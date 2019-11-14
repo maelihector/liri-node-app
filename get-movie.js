@@ -1,5 +1,6 @@
-var request = require('request-promise');
-var fs = require('fs-extra');
+require('dotenv').config();
+const request = require('request-promise');
+const fs = require('fs-extra');
 
 
 // Append output to log.txt
@@ -10,23 +11,22 @@ function append(output) {
   });
 }
 
+// Fetch OMDB api key
+const omdbApiKey = process.env.OMDB_API_KEY;
+
 // Function for getting movie from IMDB
-var getMovie = function (movie) {
+let getMovie = function (movie) {
 
   // If user did not enter movie after choosing 'get-movie', default to Mr. Nobody
   if (!movie) {
     movie = "Mr+Nobody";
   }
   // Run the call/request to the OMDB API with movie parameter
-  request("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=ef466355")
+  request("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=" + omdbApiKey)
     .then(data => {
       // Parse return data
       let movie = JSON.parse(data);
 
-      // If movie is not found, use default to Mr. Nobody
-      if (movie.Error === 'Movie not found!') {
-        getMovie();
-      }
       // Grab Rotten Tomatoes Rating
       let tomatoesRating = movie.Ratings[1].Value;
       // Grab output and store in log
@@ -40,10 +40,12 @@ var getMovie = function (movie) {
       console.log(log);
       append(log);
     }).catch(err => {
-      if (movie.Error !== 'Movie not found!') {
+      if (err) {
+        // If movie is not found, use default to Mr. Nobody
         console.log(`
         Oops, something went wrong, here's the movie Mr. Nobody instead!
         `);
+        getMovie();
       }
     });
 };
