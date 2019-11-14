@@ -34,11 +34,11 @@ Based on the commands the user enters into the terminal:
 
   - Go [here](http://www.omdbapi.com/apikey.aspx) and follow the instructions to get a free **[OMBD API](http://www.omdbapi.com/) Key**.
 
-	- Sign in, or sign up to get your [Spotify for Developers](https://developer.spotify.com/dashboard/) account, and then follow their instructions to get both a **Client ID** and a **Secret Key**.
+  - Sign in, or sign up to get your [Spotify for Developers](https://developer.spotify.com/dashboard/) account, and then follow their instructions to get both a **Client ID** and a **Secret Key**.
 
-	- Sign in, or sign up get get your [Twitter Developers](https://developer.twitter.com/en/docs/basics/getting-started) account, and then get both a **Consumer API Key**, and a **API Secret Key**
+  - Sign in, or sign up get get your [Twitter Developers](https://developer.twitter.com/en/docs/basics/getting-started) account, and then get both a **Consumer API Key**, and a **API Secret Key**
 
-	- After getting  *both your **Consumer API Key** and your **API Secret Key**, go [here](https://developer.twitter.com/en/docs/basics/authentication/guides/bearer-tokens) for instructions on how to get your **Bearer Token**.
+  - After getting  *both your **Consumer API Key** and your **API Secret Key**, go [here](https://developer.twitter.com/en/docs/basics/authentication/guides/bearer-tokens) for instructions on how to get your **Bearer Token**.
 
 5. Add your API credentials to LIRI.
 
