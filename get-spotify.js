@@ -63,7 +63,7 @@ let getSpotify = function (artist) {
           } else {
             // Fetch artist id
             let artistId = body.artists.items[0].id;
-            artistName = body.artists.items[0].name;
+            let artistName = body.artists.items[0].name;
             // Create GET call url for getting the artists' top albums
             let albumOptions = {
               url: "https://api.spotify.com/v1/artists/" + artistId + "/albums?coutry=US",
