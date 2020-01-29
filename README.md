@@ -32,38 +32,38 @@ Based on the commands the user enters into the terminal:
 
 4. Get your API Credentials:
 
-- **[OMBD API](http://www.omdbapi.com/)**
-  - Go [here](http://www.omdbapi.com/apikey.aspx) and follow the instructions to get a free **OMBD API Key**.
+  - **[OMBD API](http://www.omdbapi.com/)**
+    - Go [here](http://www.omdbapi.com/apikey.aspx) and follow the instructions to get a free **OMBD API Key**.
 
-- **[Spotify API](https://developer.spotify.com/documentation/web-api/)**
-  - Sign in, or sign up to get your [Spotify for Developers](https://developer.spotify.com/dashboard/) account, and then follow their instructions to get both a **Client ID**, and a **Secret Key**.
+  - **[Spotify API](https://developer.spotify.com/documentation/web-api/)**
+    - Sign in, or sign up to get your [Spotify for Developers](https://developer.spotify.com/dashboard/) account, and then follow their instructions to get both a **Client ID**, and a **Secret Key**.
 
--**[Twitter API](https://developer.twitter.com/en/docs)**
-  - Sign in, or sign up get your [Twitter Developers](https://developer.twitter.com/en/docs/basics/getting-started) account, and then follow their instructions to get both a **Consumer API Key**, and a **API Secret Key**
-  - After getting  *both your **Consumer API Key** and your **API Secret Key**, go [here](https://developer.twitter.com/en/docs/basics/authentication/guides/bearer-tokens) for instructions on how to get your **Bearer Token**.
+  - **[Twitter API](https://developer.twitter.com/en/docs)**
+    - Sign in, or sign up get your [Twitter Developers](https://developer.twitter.com/en/docs/basics/getting-started) account, and then follow their instructions to get both a **Consumer API Key**, and a **API Secret Key**
+    - After getting  *both your **Consumer API Key** and your **API Secret Key**, go [here](https://developer.twitter.com/en/docs/basics/authentication/guides/bearer-tokens) for instructions on how to get your **Bearer Token**.
 
 5. Add your API credentials to LIRI.
 
-- Create a .env file.
-  - At the root of your LIRI directory, inside the terminal run `touch .env`. 
-- Place all **SIX** API credentials inside the `.env` file, and make sure the file looks like the following with **YOUR OWN** credentials as the values:
+  - Create a .env file.
+    - At the root of your LIRI directory, inside the terminal run `touch .env`. 
+  - Copy and Paste all **SIX** API credentials inside the `.env` file, and make sure the file looks like the following with **YOUR OWN** credentials as the values:
 
-```
-# OMDB API key
+  ```
+  # OMDB API key
 
-OMDB_API_KEY=yourOMDBapiKeyGoesHere
+  OMDB_API_KEY=yourOMDBapiKeyGoesHere
 
-# Spotify API keys
+  # Spotify API keys
 
-SPOTIFY_ID=yourSpotifyClientIdGoesHere
-SPOTIFY_SECRET=yourSpotifySecretKeyGoesHere
+  SPOTIFY_ID=yourSpotifyClientIdGoesHere
+  SPOTIFY_SECRET=yourSpotifySecretKeyGoesHere
 
-# Twitter API keys
+  # Twitter API keys
 
-TWITTER_CONSUMER_KEY=yourTwitterConsumerAPIKeyGoesHere
-TWITTER_CONSUMER_SECRET=yourTwitterAPISecretKeyGoesHere
-TWITTER_BEARER_TOKEN=yourTwitterBearerTokenGoesHere
-```
+  TWITTER_CONSUMER_KEY=yourTwitterConsumerAPIKeyGoesHere
+  TWITTER_CONSUMER_SECRET=yourTwitterAPISecretKeyGoesHere
+  TWITTER_BEARER_TOKEN=yourTwitterBearerTokenGoesHere
+  ```
 
 6. LIRI is ready to go! The following shows you how to use LIRI.
 
